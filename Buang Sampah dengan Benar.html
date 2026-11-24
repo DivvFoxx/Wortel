@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Buang Sampah dengan Benar</title>
+<style>
+:root{
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+  --bg:#f6faf5;--surface:#ffffff;--text:#1b2a1f;--muted:#55665a;--border:#d8e5d6;--accent:#2e7d32;--accent-text:#ffffff;
+  --org:#2e7d32;--anorg:#f9a825;--b3:#c62828;--residu:#607d8b;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#121a14;--surface:#1b261e;--text:#e8f1ea;--muted:#a3b5a8;--border:#2c3d31;--accent:#66bb6a;--accent-text:#0e1a11;
+    --org:#66bb6a;--anorg:#ffca28;--b3:#ef5350;--residu:#90a4ae;color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#121a14;--surface:#1b261e;--text:#e8f1ea;--muted:#a3b5a8;--border:#2c3d31;--accent:#66bb6a;--accent-text:#0e1a11;
+  --org:#66bb6a;--anorg:#ffca28;--b3:#ef5350;--residu:#90a4ae;color-scheme:dark;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.6}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);border-bottom:1px solid var(--border);z-index:5}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:10px;padding-bottom:10px}
+.brand{font-weight:700}
+nav{display:flex;gap:14px;overflow-x:auto;font-size:.95rem}
+nav a{color:var(--muted);text-decoration:none;white-space:nowrap}
+nav a:hover{color:var(--accent)}
+.hero{padding:56px 0 40px;text-align:center}
+.hero h1{font-size:clamp(2rem,6vw,3.2rem);line-height:1.15;margin:0 0 14px}
+.hero p{max-width:560px;margin:0 auto 24px;color:var(--muted);font-size:1.1rem}
+.btn{display:inline-block;background:var(--accent);color:var(--accent-text);padding:12px 22px;border-radius:999px;text-decoration:none;font-weight:600;border:0;cursor:pointer;font-size:1rem}
+section{padding:40px 0}
+h2{font-size:1.7rem;margin:0 0 8px}
+.lead{color:var(--muted);margin:0 0 24px}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px}
+.card h3{margin:8px 0 6px;font-size:1.1rem}
+.card p{margin:0 0 8px;color:var(--muted);font-size:.95rem}
+.dot{display:inline-block;width:44px;height:44px;border-radius:12px;font-size:1.5rem;line-height:44px;text-align:center}
+.bar{height:6px;border-radius:6px;margin-bottom:12px}
+.tag{font-size:.8rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.game{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px}
+.items{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.item{background:var(--bg);color:var(--text);border:1px solid var(--border);border-radius:999px;padding:8px 14px;cursor:pointer;font-size:.95rem}
+.item:hover,.item.on{border-color:var(--accent);outline:2px solid var(--accent)}
+.result{min-height:64px;padding:14px;border-radius:12px;background:var(--bg);border:1px dashed var(--border);color:var(--muted)}
+.result strong{color:var(--text)}
+.steps{counter-reset:s;display:grid;gap:12px;padding:0;list-style:none;margin:0}
+.steps li{counter-increment:s;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:14px 16px 14px 56px;position:relative}
+.steps li::before{content:counter(s);position:absolute;left:14px;top:12px;width:30px;height:30px;border-radius:50%;background:var(--accent);color:var(--accent-text);text-align:center;line-height:30px;font-weight:700}
+.stats{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.stat{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;text-align:center}
+.stat b{display:block;font-size:2rem;color:var(--accent)}
+.stat span{color:var(--muted);font-size:.9rem}
+footer{border-top:1px solid var(--border);padding:28px 0 40px;text-align:center;color:var(--muted);font-size:.9rem}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <div class="brand">♻️ Buang Sampah</div>
+  <nav><a href="#jenis">Jenis</a><a href="#coba">Coba</a><a href="#langkah">Langkah</a><a href="#3r">3R</a></nav>
+</div></header>
+
+<main>
+<div class="wrap">
+  <div class="hero">
+    <h1>Buang sampah di tempatnya, mulai dari rumah.</h1>
+    <p>Panduan singkat untuk semua orang: cara memilah, ke mana membuangnya, dan kebiasaan kecil yang menjaga lingkungan kita tetap bersih.</p>
+    <a class="btn" href="#jenis">Mulai belajar</a>
+  </div>
+
+  <section id="jenis">
+    <h2>Empat jenis sampah</h2>
+    <p class="lead">Pisahkan sejak awal agar mudah didaur ulang atau diolah.</p>
+    <div class="grid">
+      <div class="card"><div class="bar" style="background:var(--org)"></div><span class="dot" style="background:var(--org)">🍃</span><h3>Organik</h3><p>Sisa makanan, kulit buah, daun, ranting. Bisa dijadikan kompos.</p><span class="tag" style="color:var(--org)">Tong hijau</span></div>
+      <div class="card"><div class="bar" style="background:var(--anorg)"></div><span class="dot" style="background:var(--anorg)">🧴</span><h3>Anorganik</h3><p>Botol plastik, kaleng, kertas, kardus, kaca. Bersihkan lalu kumpulkan untuk didaur ulang.</p><span class="tag" style="color:var(--anorg)">Tong kuning</span></div>
+      <div class="card"><div class="bar" style="background:var(--b3)"></div><span class="dot" style="background:var(--b3)">🔋</span><h3>B3 (berbahaya)</h3><p>Baterai, lampu neon, obat kedaluwarsa, pestisida. Jangan dicampur dengan sampah lain.</p><span class="tag" style="color:var(--b3)">Tong merah</span></div>
+      <div class="card"><div class="bar" style="background:var(--residu)"></div><span class="dot" style="background:var(--residu)">🧻</span><h3>Residu</h3><p>Popok, tisu bekas, puntung rokok, pembalut. Tidak bisa didaur ulang.</p><span class="tag" style="color:var(--residu)">Tong abu-abu</span></div>
+    </div>
+  </section>
+
+  <section id="coba">
+    <h2>Coba: ke tong mana?</h2>
+    <p class="lead">Ketuk sebuah benda untuk melihat tempat membuangnya.</p>
+    <div class="game">
+      <div class="items" id="items"></div>
+      <div class="result" id="result">Pilih salah satu benda di atas.</div>
+    </div>
+  </section>
+
+  <section id="langkah">
+    <h2>Langkah membuang sampah dengan benar</h2>
+    <p class="lead">Lima kebiasaan sederhana yang bisa dilakukan siapa saja.</p>
+    <ol class="steps">
+      <li><b>Siapkan beberapa wadah.</b> Minimal dua: satu untuk organik, satu untuk anorganik.</li>
+      <li><b>Pilah saat membuang.</b> Jangan menunggu sampai menumpuk dan bercampur.</li>
+      <li><b>Bersihkan dan keringkan.</b> Bilas kemasan agar tidak berbau dan layak didaur ulang.</li>
+      <li><b>Ikat kantong dengan rapat.</b> Supaya tidak berserakan dan tidak mengundang lalat atau tikus.</li>
+      <li><b>Buang ke TPS atau bank sampah.</b> Jangan ke sungai, selokan, atau lahan kosong, dan jangan membakar sampah.</li>
+    </ol>
+  </section>
+
+  <section id="3r">
+    <h2>Prinsip 3R</h2>
+    <p class="lead">Cara terbaik mengurangi sampah adalah tidak menghasilkannya.</p>
+    <div class="grid">
+      <div class="card"><h3>♻️ Reduce</h3><p>Kurangi: bawa tas belanja, botol minum, dan kotak makan sendiri.</p></div>
+      <div class="card"><h3>🔁 Reuse</h3><p>Pakai ulang: toples bekas jadi wadah, kain perca jadi lap.</p></div>
+      <div class="card"><h3>🏭 Recycle</h3><p>Daur ulang: serahkan sampah anorganik bersih ke bank sampah.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Mengapa penting?</h2>
+    <p class="lead">Sampah yang dibuang sembarangan berdampak pada kita semua.</p>
+    <div class="stats">
+      <div class="stat"><b>🌊</b><span>Menyumbat selokan dan memicu banjir</span></div>
+      <div class="stat"><b>🦟</b><span>Menjadi sarang nyamuk dan penyakit</span></div>
+      <div class="stat"><b>🐟</b><span>Mencemari sungai dan laut</span></div>
+    </div>
+  </section>
+</div>
+</main>
+
+<footer><div class="wrap">Mulai dari satu kantong sampah hari ini. Bagikan halaman ini ke keluarga dan tetangga. 🌱</div></footer>
+
+<script>
+var DATA=[
+ ["Kulit pisang","Organik","Tong hijau","Bisa dikompos atau dijadikan pupuk.","var(--org)"],
+ ["Sisa nasi","Organik","Tong hijau","Sisa makanan masuk sampah organik.","var(--org)"],
+ ["Daun kering","Organik","Tong hijau","Cocok untuk kompos.","var(--org)"],
+ ["Botol plastik","Anorganik","Tong kuning","Bilas dulu, lalu serahkan ke bank sampah.","var(--anorg)"],
+ ["Kardus","Anorganik","Tong kuning","Lipat dan jaga tetap kering agar bisa didaur ulang.","var(--anorg)"],
+ ["Kaleng minuman","Anorganik","Tong kuning","Bisa didaur ulang menjadi logam baru.","var(--anorg)"],
+ ["Baterai bekas","B3","Tong merah","Berbahaya. Serahkan ke tempat pengumpulan khusus B3.","var(--b3)"],
+ ["Lampu neon","B3","Tong merah","Mengandung merkuri. Jangan dipecahkan, kumpulkan terpisah.","var(--b3)"],
+ ["Obat kedaluwarsa","B3","Tong merah","Jangan dibuang ke saluran air. Serahkan ke apotek atau fasilitas B3.","var(--b3)"],
+ ["Popok bekas","Residu","Tong abu-abu","Bungkus rapat sebelum dibuang ke TPS.","var(--residu)"],
+ ["Tisu bekas","Residu","Tong abu-abu","Tisu yang kotor tidak bisa didaur ulang.","var(--residu)"],
+ ["Puntung rokok","Residu","Tong abu-abu","Padamkan sepenuhnya lalu buang ke tempat sampah, bukan ke tanah.","var(--residu)"]
+];
+var box=document.getElementById("items"),res=document.getElementById("result");
+DATA.forEach(function(d,i){
+  var b=document.createElement("button");
+  b.className="item";b.type="button";b.textContent=d[0];
+  b.addEventListener("click",function(){
+    Array.prototype.forEach.call(box.children,function(c){c.classList.remove("on")});
+    b.classList.add("on");
+    res.innerHTML="";
+    var s=document.createElement("strong");
+    s.textContent=d[0]+" → "+d[1]+" ("+d[2]+")";
+    s.style.color=d[4];
+    var p=document.createElement("div");
+    p.textContent=d[3];
+    res.appendChild(s);res.appendChild(p);
+  });
+  box.appendChild(b);
+});
+</script>
+</body>
+</html>
